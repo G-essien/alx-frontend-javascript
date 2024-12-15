@@ -1,56 +1,21 @@
-// Define the DirectorInterface
-interface DirectorInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workDirectorTasks(): string;
-}
+// main.ts
 
-// Define the TeacherInterface
-interface TeacherInterface {
-  workFromHome(): string;
-  getCoffeeBreak(): string;
-  workTeacherTasks(): string;
-}
+/// <reference path="./crud.d.ts" />
+import { RowID, RowElement } from './interface';
+import * as CRUD from './crud';
 
-// Implement the Director class
-export const Director = class Director implements DirectorInterface {
-  workFromHome(): string {
-    return "Working from home";
-  }
+// Creating a new row
+const obj: RowElement = { firstName: "Guillaume", lastName: "Salva" };
 
-  getCoffeeBreak(): string {
-    return "Getting a coffee break";
-  }
+// Inserting the row
+const newRowID: RowID = CRUD.insertRow(obj);
+console.log(`Inserted Row ID: ${newRowID}`);
 
-  workDirectorTasks(): string {
-    return "Getting to director tasks";
-  }
-};
+// Updating the row with an age
+const updatedRow: RowElement = { ...obj, age: 23 };
+CRUD.updateRow(newRowID, updatedRow);
+console.log(`Updated row ID ${newRowID}`, updatedRow);
 
-// Implement the Teacher class
-export const Teacher = class Teacher implements TeacherInterface {
-  workFromHome(): string {
-    return "Cannot work from home";
-  }
-
-  getCoffeeBreak(): string {
-    return "Cannot have a break";
-  }
-
-  workTeacherTasks(): string {
-    return "Getting to work";
-  }
-};
-
-// createEmployee function
-export function createEmployee(salary: number | string): DirectorInterface | TeacherInterface {
-  if (typeof salary === 'number' && salary < 500) {
-    return new Teacher();
-  }
-
-  return new Director();
-}
-
-console.log(createEmployee(200)); 
-console.log(createEmployee(1000)); 
-console.log(createEmployee('$500')); 
+// Deleting the row
+CRUD.deleteRow(newRowID);
+console.log(`Deleted row ID ${newRowID}`);

@@ -48,6 +48,9 @@ export const printTeacher: printTeacherFunction = (firstName, lastName) => {
   return `${firstName.charAt(0)}. ${lastName}`;
 };
 
+// Example usage of the printTeacher function
+console.log(printTeacher("John", "Doe")); // Expected output: "J. Doe"
+
 // Define the constructor interface for the Student class
 export interface StudentClassConstructor {
   new (firstName: string, lastName: string): StudentClassInterface;
@@ -71,9 +74,6 @@ export class StudentClass implements StudentClassInterface {
     return this.firstName;
   }
 }
-
-// Example usage of the printTeacher function
-console.log(printTeacher("John", "Doe")); // Expected output: "J. Doe"
 
 // Example usage of the StudentClass
 const student = new StudentClass("Jane", "Smith");

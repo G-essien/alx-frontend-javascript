@@ -42,7 +42,7 @@ export const Teacher = class Teacher implements TeacherInterface {
   }
 };
 
-// Create the createEmployee function
+// createEmployee function
 export function createEmployee(salary: number | string): DirectorInterface | TeacherInterface {
   if (typeof salary === 'number' && salary < 500) {
     return new Teacher();
@@ -51,7 +51,6 @@ export function createEmployee(salary: number | string): DirectorInterface | Tea
   return new Director();
 }
 
-// Example usage
-console.log(createEmployee(200)); // Expected output: Teacher instance
-console.log(createEmployee(1000)); // Expected output: Director instance
-console.log(createEmployee('$500')); // Expected output: Director instance
+console.log(createEmployee(200)); 
+console.log(createEmployee(1000)); 
+console.log(createEmployee('$500')); 
